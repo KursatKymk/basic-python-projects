@@ -1,0 +1,101 @@
+import os
+import shutil
+
+#spacift the directory to organize
+directory = os.getcwd() + "/test" #os.getcwd() returns the current working directory
+
+fileExtantions = {
+    "HTML": [".html5", ".html", ".htm", ".xhtml"], 
+    "IMAGES": [".jpeg", ".jpg", ".tiff", ".gif", ".bmp", ".png", ".bpg", "svg",
+                ".heif", ".psd"],
+    "VIDEOS": [".avi", ".flv", ".wmv", ".mov", ".mp4", ".webm", ".vob", ".mng",
+                ".qt", ".mpg", ".mpeg", ".3gp", ".mkv"],
+    "DOCUMENTS": [".oxps", ".epub", ".pages", ".docx", ".doc", ".fdf", ".ods", 
+                    ".odt", ".pwi", ".xsn", ".xps", ".dotx", ".docm", ".dox",
+                    ".rvg", ".rtf", ".rtfd", ".wpd", ".xls", ".xlsx", ".ppt",
+                    "pptx"],
+    "ARCHIVES": [".a", ".ar", ".cpio", ".iso", ".tar", ".gz", ".rz", ".7z",
+                    ".dmg", ".rar", ".xar", ".zip"],
+    "AUDIO": [".aac", ".aa", ".aac", ".dvf", ".m4a", ".m4b", ".m4p", ".mp3",
+                ".msv", "ogg", "oga", ".raw", ".vox", ".wav", ".wma"],
+    "PLAINTEXT": [".txt", ".in", ".out"],
+    "PDF": [".pdf"],
+    "PYTHON": [".py"],
+    "XML": [".xml"],
+    "EXE": [".exe"],
+    "SHELL": [".sh"]
+} #dictionary of file extentions
+ 
+#function to get all the files in the directory
+def getFilesInDirectory(directory):
+    files = []
+    for file in os.listdir(directory):
+        if os.path.isfile(os.path.join(directory, file)):
+            files.append(file)
+    return files
+
+files = getFilesInDirectory(directory) #get all the files in the directory
+
+#function to get the file extention
+file = getFilesInDirectory(directory)[1]
+def getFileExtention(file):
+    fileExtention = os.path.splitext(file)[1]
+    return fileExtention
+
+
+for file in  files:  #loop through all the files in the directory
+    fileExtention = getFileExtention(file)
+    sourcePath = os.path.join(directory, file)
+
+    if fileExtention in fileExtantions["VIDEOS"]:
+        target_directory = os.path.join(directory, "VIDEOS")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["IMAGES"]:
+        target_directory = os.path.join(directory, "IMAGES")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["DOCUMENTS"]:
+        target_directory = os.path.join(directory, "DOCUMENTS")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["PDF"]:
+        target_directory = os.path.join(directory, "PDF")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["PYTHON"]:
+        target_directory = os.path.join(directory, "PYTHON")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["XML"]:
+        target_directory = os.path.join(directory, "XML")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["EXE"]:
+        target_directory = os.path.join(directory, "EXE")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["SHELL"]:
+        target_directory = os.path.join(directory, "SHELL")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["PLAINTEXT"]:
+        target_directory = os.path.join(directory, "PLAINTEXT")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["ARCHIVES"]:
+        target_directory = os.path.join(directory, "ARCHIVES")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["AUDIO"]:
+        target_directory = os.path.join(directory, "AUDIO")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    elif fileExtention in fileExtantions["HTML"]:
+        target_directory = os.path.join(directory, "HTML")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
+    else:
+        target_directory = os.path.join(directory, "OTHER")
+        target_path = os.path.join(target_directory, file)
+        shutil.move(sourcePath, target_path)
